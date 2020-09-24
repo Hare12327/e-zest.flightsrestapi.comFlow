@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="eaaac607-89aa-4223-84c9-fe4cf995ee9c" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="3acdecee-d2be-438d-b3b5-2e94f24e1fc9" >
+		<http:request-connection host="mu.mulesoft-training.com" />
+	</http:request-config>
+	<flow name="e-zest.flightsrestapi.comFlow" doc:id="1acf586a-ddd2-41e7-93f4-7beb9e0ea358" >
+		<http:listener doc:name="Listener" doc:id="c04d0045-70a9-46c0-b10a-6ac5647c7051" config-ref="HTTP_Listener_config" path="FlightsURL"/>
+		<http:request method="GET" doc:name="Request" doc:id="ab54e791-87ca-4d2c-b3d0-21dd5ea2500f" config-ref="HTTP_Request_configuration" path="/essentials/united/flights/"/>
+		<logger level="INFO" doc:name="Logger" doc:id="369fcee0-0136-4649-b1bb-e380ba4c2183" message='""Retrieve flights details WS has been invoked""'/>
+	</flow>
+</mule>
